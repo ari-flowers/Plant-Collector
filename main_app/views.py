@@ -14,6 +14,10 @@ from .models import Plant
 #   Plant('Pink Princess', 'Philodendron', '3 inch PPP', 1),
 #   Plant('Pink Splash', 'Syngonium', 'Top 5 faves', 1)
 # ]
+def plants_detail(request, plant_id):
+    plant = Plant.objects.get(id=plant_id)
+    return render(request, 'plants/detail.html', { 'plant': plant })
+
 def plants_index(request):
   plants = Plant.objects.all()
   return render(request, 'plants/index.html', { 'plants': plants })
