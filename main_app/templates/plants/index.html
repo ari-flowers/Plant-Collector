@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>🪴Plant Collection🪴</h1>
+<hr />
+<p>All of my very expensive plants. I can afford them.</p>
+
+{% for plant in plants %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ plant.name }}</span>
+      <p>Breed: {{ plant.breed }}</p>
+      <p>Description: {{ plant.description }}</p>
+      {% if plant.age > 0 %}
+        <p>Age: {{ plant.age }}</p>
+      {% else %}
+        <p>Age: Kitten</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
