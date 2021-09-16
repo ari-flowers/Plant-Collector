@@ -2,16 +2,16 @@ from django.shortcuts import render
 
 # Add the plant class & list and view function below the imports
 class Plant:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, breed, description, age):
+  def __init__(self, name, species, description, age):
     self.name = name
-    self.breed = breed
+    self.species = species
     self.description = description
     self.age = age
 
 plants = [
-  Plant('Lolo', 'tabby', 'foul little demon', 3),
-  Plant('Sachi', 'tortoise shell', 'diluted tortoise shell', 0),
-  Plant('Raven', 'black tripod', '3 legged plant', 4)
+  Plant('Epipremnum Pinatum Variegata', 'Pothos', 'Grown from a node.', 0),
+  Plant('Pink Princess', 'Philodendron', '3 inch PPP', 1),
+  Plant('Pink Splash', 'Syngonium', 'Top 5 faves', 1)
 ]
 
 # Define the home view
