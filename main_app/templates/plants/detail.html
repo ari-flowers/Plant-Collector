@@ -28,6 +28,16 @@
       {{ watering_form.as_p }}
       <input type="submit" class="btn" value="Add Watering">
     </form>
+
+    <br>
+    {% if plant.watered_this_week %}
+      <div class="card-panel teal-text center-align">{{plant.name}} has been watered this week.</div>
+    {% else %}
+      <div class="card-panel red-text center-align">{{plant.name}} might need water.</div>
+    {% endif %}
+
+
+
     <table class="striped">
       <thead>
         <tr><th>Date</th><th>Watering</th></tr>

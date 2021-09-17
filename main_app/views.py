@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Plant
+from .models import Plant, Item
 from .forms import WateringForm
 
 def plants_detail(request, plant_id):
@@ -46,3 +47,22 @@ class PlantUpdate(UpdateView):
 class PlantDelete(DeleteView):
   model = Plant
   success_url = '/plants/'
+
+#Item views
+class ItemList(ListView):
+    model = Item
+
+class ItemDetail(DetailView):
+    model = Item
+
+class ItemCreate(CreateView):
+    model = Item
+    fields = '__all__'
+
+class ItemUpdate(UpdateView):
+    model = Item 
+    fields = ['name', 'size', 'description']
+
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = '/items'
