@@ -1,22 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Plant
+from .forms import WateringForm
 
-# Add the plant class & list and view function below the imports
-# class Plant:  # Note that parens are optional if not inheriting from another class
-#   def __init__(self, name, species, description, age):
-#     self.name = name
-#     self.species = species
-#     self.description = description
-#     self.age = age
-#
-# plants = [
-#   Plant('Epipremnum Pinatum Variegata', 'Pothos', 'Grown from a node.', 0),
-#   Plant('Pink Princess', 'Philodendron', '3 inch PPP', 1),
-#   Plant('Pink Splash', 'Syngonium', 'Top 5 faves', 1)
-# ]
 def plants_detail(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
-    return render(request, 'plants/detail.html', { 'plant': plant })
+    watering_form = WateringForm()
+    return render(request, 'plants/detail.html', {
+        'plant': plant, 'watering_form': watering_form
+    })
+
+def add_watering(request, plant_id):
+  # create a ModelForm instance using the data in request.POST
+  form = WateringForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_watering = form.save(commit=False)
+    new_watering.plant_id = plant_id
+    new_watering.save()
+  return redirect('detail', plant_id=plant_id)
 
 def plants_index(request):
   plants = Plant.objects.all()
@@ -29,3 +33,16 @@ def home(request):
 # Define about view
 def about(request):
     return render(request, 'about.html')
+
+class PlantCreate(CreateView):
+  model = Plant
+  fields = '__all__'
+  # success_url = '/plants'
+
+class PlantUpdate(UpdateView):
+  model = Plant
+  fields = ['species', 'description', 'age']
+
+class PlantDelete(DeleteView):
+  model = Plant
+  success_url = '/plants/'
