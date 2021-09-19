@@ -21,7 +21,24 @@
         <a href="{% url 'plants_delete' plant.id %}">Delete</a>
       </div>
     </div>
+
+  {% for photo in plant.photo_set.all %}
+    <img class="responsive-img card-panel" src="{{photo.url}}">
+  {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+  {% endfor %}
+
+  <form action="{% url 'add_photo' plant.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+    {% csrf_token %}
+    <input type="file" name="photo-file">
+    <br><br>
+    <input type="submit" class="btn" value="Upload Photo">
+</form>
   </div>
+
+
+
+
   <div class="col s6">
     <form action="{% url 'add_watering' plant.id %}" method="post">
       {% csrf_token %}
@@ -54,6 +71,51 @@
   </div>
 </div>
 
+
+<!-- item association -->
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ plant.name }}'s Items</h3>
+    {% if plant.items.count %}
+      {% for item in plant.items.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="size: {{ item.size }}">{{ item.size }}</span> {{ item.name }}<br/>
+              <small> {{ item.description }} </small>
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Items :(</h5>
+    {% endif %}
+  </div>
+
+  <div class="col s6">
+   <h3>Available Items</h3>
+   {% if items.count %}
+     {% for item in items.all %}
+       <div class="card">
+         <div class="card-content">
+           <span class="card-title">
+             A <span style="size: {{ item.size }}">{{ item.size }}</span> {{ item.name }}
+             <small> {{ item.description }} </small>
+           </span>
+         </div>
+         <div class="card-action">
+           <form action="" method="post">
+             {% csrf_token %}
+             <button type="submit" class="btn">Add</button>
+           </form>
+         </div>
+       </div>
+     {% endfor %}
+   {% else %}
+     <h5>{{plant.name}} Already Has All Items Available</h5>
+   {% endif %}
+ </div>
 <script>
   const dateEl = document.getElementById('id_date');
   M.Datepicker.init(dateEl, {
@@ -65,4 +127,5 @@
   const selectEl = document.getElementById('id_watering_type');
   M.FormSelect.init(selectEl);
 </script>
+
 {% endblock %}

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Plant Collector</title>
+  <!-- materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -19,10 +20,12 @@
         </ul>
         <ul class="right">
           <li><a href="/about">About</a></li>
-          <li><a href="{% url 'items_create' %}">Add an Item</a></li>
-          <li><a href="/items">View All Items</a></li>
+          <!-- plant nav -->
           <li><a href="{% url 'plants_create' %}">Add a Plant</a></li>
           <li><a href="/plants">View All My Plants</a></li>
+          <!-- items nav -->
+          <li><a href="{% url 'items_create' %}">Add an Item</a></li>
+          <li><a href="/items">View All Items</a></li>
         </ul>
       </div>
     </nav>

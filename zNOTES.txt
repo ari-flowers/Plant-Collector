@@ -1,3 +1,14 @@
-EMV NOTES
+MVP NOTES
 
 Ignore the emv file so we dont push it up on git
+add item button will click, but will not add item to plant.
+Also doesnt remove from inventory. 
+
+++++++++++++++++
+STETCH GOALS
+
+1. Delete items from plants inventory
+2. change day date to weekly watering
+3. watering log in a scroll box, option to delete/ edit entries?
+
+4. change color in materialize
