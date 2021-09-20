@@ -17,10 +17,13 @@ urlpatterns = [
     path('items/<int:pk>/', views.ItemDetail.as_view(), name='items_detail'),
     path('items/<int:pk>/update/', views.ItemUpdate.as_view(), name='items_update'),
     path('items/<int:pk>/delete/', views.ItemDelete.as_view(), name='items_delete'),
-    #item / plant many to many association
+    #item add association / plant many to many association
     path('plants/<int:plant_id>/assoc_item/<int:item_id>/', views.assoc_item, name='assoc_item'),
+    #item delete association
+    path('plants/<int:plant_id>/unassoc_item/<int:item_id>/', views.unassoc_item, name='unassoc_item'),
+    # add photo
     path('plants/<int:plant_id>/add_photo/', views.add_photo, name='add_photo'),
+    # authentication 
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
-
 ]

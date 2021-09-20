@@ -1,5 +1,5 @@
 body {
-  background-color: #BFC8AD;
+
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -12,7 +12,4 @@ main {
 footer.page-footer {
   padding-top: 0;
   text-align: right;
-}
-* {
-background-color: #BFC8AD;
 }

@@ -21,7 +21,7 @@
         <a href="{% url 'plants_delete' plant.id %}">Delete</a>
       </div>
     </div>
-
+<!-- Add photo functionlity -->
   {% for photo in plant.photo_set.all %}
     <img class="responsive-img card-panel" src="{{photo.url}}">
   {% empty %}
@@ -35,9 +35,6 @@
     <input type="submit" class="btn" value="Upload Photo">
 </form>
   </div>
-
-
-
 
   <div class="col s6">
     <form action="{% url 'add_watering' plant.id %}" method="post">
@@ -86,7 +83,7 @@
               <small> {{ item.description }} </small>
             </span>
             <div class="card-action">
-              <form action="" method="delete">
+              <form action="{% url 'unassoc_item' plant.id item.id %}" method="delete">
                 {% csrf_token %}
                 <button type="submit" class="btn">Delete</button>
               </form>
@@ -111,7 +108,7 @@
            </span>
          </div>
          <div class="card-action">
-           <form action="" method="post">
+           <form action= "{% url 'assoc_item' plant.id item.id %}" method="post">
              {% csrf_token %}
              <button type="submit" class="btn">Add</button>
            </form>

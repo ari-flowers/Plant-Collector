@@ -10,6 +10,7 @@ from .forms import WateringForm
 import uuid
 import boto3
 import botocore
+import botocore.exceptions
 import os
 
 def signup(request):
@@ -45,8 +46,14 @@ def add_photo(request, plant_id):
             s3.upload_fileobj(photo_file, bucket, key)
             # build the full url string
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            print(url)
             # we can assign to plant_id or plant (if you have a plant object)
             Photo.objects.create(url=url, plant_id=plant_id)
+        except botocore.exceptions.ClientError as error:
+            print('An error occurred uploading file to S3')
+            raise error
+        except botocore.exceptions.ParamValidationError as error:
+            raise ValueError('The parameters you provided are incorrect: {}'.format(error))
         except:
             print('An error occurred uploading file to S3')
     return redirect('detail', plant_id=plant_id)

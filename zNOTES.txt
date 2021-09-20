@@ -1,14 +1,16 @@
-MVP NOTES
-
-Ignore the emv file so we dont push it up on git
-add item button will click, but will not add item to plant.
-Also doesnt remove from inventory. 
 
 ++++++++++++++++
 STETCH GOALS
-
+0. Photo uploads
 1. Delete items from plants inventory
 2. change day date to weekly watering
 3. watering log in a scroll box, option to delete/ edit entries?
+4. change background color in materialize
 
-4. change color in materialize
+Implement photo uploads that each user can add to your repo.
+Core App Functionality_
+
+Add custom input validations
+Implement a forgot password page for users.
+Implement a Social Login (Google, Facebook, Twitter). Here's a tutorial to get you started: https://realpython.com/adding-social-authentication-to-django/
+Implement a 3rd Party API (Google Maps, Twitter, MailChimp, Any Newsfeed)
