@@ -21,5 +21,6 @@ urlpatterns = [
     path('plants/<int:plant_id>/assoc_item/<int:item_id>/', views.assoc_item, name='assoc_item'),
     path('plants/<int:plant_id>/add_photo/', views.add_photo, name='add_photo'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', views.signup, name='signup'),
 
 ]

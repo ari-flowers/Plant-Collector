@@ -85,6 +85,12 @@
               A <span style="size: {{ item.size }}">{{ item.size }}</span> {{ item.name }}<br/>
               <small> {{ item.description }} </small>
             </span>
+            <div class="card-action">
+              <form action="" method="delete">
+                {% csrf_token %}
+                <button type="submit" class="btn">Delete</button>
+              </form>
+            </div>
           </div>
         </div>
       {% endfor %}
